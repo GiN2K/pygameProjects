@@ -11,7 +11,7 @@ Killing an enemy will increase your score and the respawned enemy will be faster
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install pygame.
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the dependencies.
 
 ```bash
 pip install pygame

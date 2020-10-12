@@ -4,14 +4,16 @@ import mixer
 
 pygame.init()
 
+fpsClock = pygame.time.Clock()
+
 screen_width = 800
 screen_height = 800
 screen = pygame.display.set_mode((screen_width,screen_height))
-background_img = pygame.image.load('background.jpg')
+background_img = pygame.image.load('background.jpg').convert_alpha()
 pygame.display.set_caption('Space Invaders')
 
-mixer.music.load("explosion.wav")
-mixer.music.play(-1
+pygame.mixer.music.load("background.wav")
+pygame.mixer.music.play(-1)
 
 ship_img = pygame.image.load('space-invaders.png')
 ship_length = 64
@@ -98,6 +100,8 @@ while game_running:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 if space_pressed== False and game_over_bool== False:
+                    bulletSound = pygame.mixer.Sound("laser.wav")
+                    bulletSound.play()
                     space_pressed = True
                     bulletX = shipX+ship_length/2-5
             if event.key == pygame.K_RETURN:
@@ -139,6 +143,8 @@ while game_running:
                 bulletY = shipY
 
         if is_collision(enemyX,bulletX,enemy_width,bulletY,enemyY) == True:
+            explosionSound = pygame.mixer.Sound("explosion.wav")
+            explosionSound.play()
             score_value += 1
             space_pressed = False
             bulletY = shipY
@@ -150,5 +156,6 @@ while game_running:
         if show_score_bool == True:
             show_score(scoreX,scoreY)
     pygame.display.update()
+    fpsClock.tick(144)
 
 pygame.quit()
